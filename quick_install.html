@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>
+        iOS内测极速通道
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="https://ios.firstshare.cn:8081/userContent/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="https://ios.firstshare.cn:8081/userContent/qrcode.min.js">
+    </script>
+    <style type="text/css">
+      html, body {
+        border: 0;
+        padding: 0;
+        margin: 0;
+      }
+      .home {
+        background-color: #eee;
+        overflow: hidden;
+      }
+      .content {
+        height:750px;
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #FFF;
+      }
+      .subtitle {
+        margin-left:30px;
+      }
+      .title {
+        width:100%;
+        height:60px;
+        display:inline-block;
+        text-align:center;
+        margin-top:25px;
+        font-size:30px
+      }
+      .warning {
+        color:red;
+      }
+      #qrcode {
+        text-align:center;
+        margin:0 auto;
+        margin-top:50px;
+        width:250px;
+        height:250px
+      }
+      #download {
+        height:32px;
+        width:50%;
+        text-align:center;
+        margin:0 auto;
+        margin-top:20px;
+        background:#fff;
+        border:1px #000 solid;
+        border-radius:3px;
+        text-decoration:none;
+        font-size:20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+    </style>
+</head>
+<body class="home">
+<div class="content">
+      <span class="title">
+        iOS内测包极速安装
+      </span>
+    <br>
+    <span class="subtitle">
+        基线：AppStore_8.3.5
+      </span>
+    <br>
+    <span class="subtitle">
+        包名：FaciShare_8.3.5.9.24.Switchable.Release.ipa
+      </span>
+    <br>
+    <span class="subtitle">
+        时间：2022-12-08 11:40:19
+      </span>
+    <br/>
+    <div class="warning">
+        <ul>
+            <li>
+                只能在公司内网访问下载
+            </li>
+        </ul>
+    </div>
+    <br/>
+    <div id="download">
+        <a id="downloadA" href="" style="text-decoration:none;">
+            点击这里安装
+        </a>
+    </div>
+    <div id="qrcode">
+    </div>
+</div>
+</body>
+
+</html>
+<script type="text/javascript">
+function makeCode(url) {
+    qrcode.makeCode(url)
+}
+function setPlistUrl(url) {
+    $("#downloadA").attr("href", url)
+}
+var currentURL = window.location.href;
+var baseProtocolHostPort = window.location.protocol + "//" + window.location.host;
+var baseCurrentURL = currentURL.replace("quick_install.html", "").replace(baseProtocolHostPort, "https://ios.firstshare.cn:8081");
+var plistURL = "itms-services://?action=download-manifest&url=" + baseCurrentURL + "quick_install.plist";
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width: 250,
+    height: 250
+});
+setPlistUrl(plistURL),
+makeCode(currentURL);
+</script>
